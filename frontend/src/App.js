@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     getData()
-  }, [todos, delItem])
+  }, [isRefetch])
 
   return (
     <div className='App'>

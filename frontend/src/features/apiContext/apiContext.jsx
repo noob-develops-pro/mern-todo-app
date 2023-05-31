@@ -9,6 +9,19 @@ const AppProvider = ({ children }) => {
   const dispatch = useDispatch()
   const [isRefetch, setIsRefetch] = useState(true)
 
+  const getData = async () => {
+    try {
+      if (isRefetch) {
+        const response = await axios.get('http://localhost:5000/api/v1/todos')
+        console.log('data fethed')
+        dispatch(setTodos(response.data.todos)) // Dispatch setTodos action
+      }
+      setIsRefetch(false)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
+  }
+
   const createItem = async (val) => {
     try {
       await axios.post('http://localhost:5000/api/v1/todos', {
@@ -36,24 +49,11 @@ const AppProvider = ({ children }) => {
   }
   const editItem = async (id, newValue) => {
     try {
-      await axios.put(`http://localhost:5000/api/v1/todos/${id}`, {
+      await axios.patch(`http://localhost:5000/api/v1/todos/${id}`, {
         title: newValue,
       })
       setIsRefetch(true)
       getData()
-    } catch (error) {
-      console.error('Error fetching data:', error)
-    }
-  }
-
-  const getData = async () => {
-    try {
-      if (isRefetch) {
-        const response = await axios.get('http://localhost:5000/api/v1/todos')
-        console.log('data fethed')
-        dispatch(setTodos(response.data.todos)) // Dispatch setTodos action
-      }
-      setIsRefetch(false)
     } catch (error) {
       console.error('Error fetching data:', error)
     }

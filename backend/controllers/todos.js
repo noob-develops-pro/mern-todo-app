@@ -58,10 +58,10 @@ export const updateTodo = async (req, res) => {
     const newData = req.body
 
     // Find the todo by ID and update it with the new data
-    const updatedTodo = await Todo.findOneAndUpdate({ _id: todoID }, newData, {
-      new: true,
-      runValidators: true,
-    })
+    const updatedTodo = await Todo.findOneAndUpdate(
+      { _id: todoID },
+      { $set: { title: newData.title } }
+    )
 
     //return early if required todo not found in db
     if (!updatedTodo) {
