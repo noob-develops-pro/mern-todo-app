@@ -1,6 +1,9 @@
-### todo-app using MERN Stack
+# TODO - APP using MERN Stack
 
-##### project is maily devided in two part : frontend and backend
+- you need to clone this repo to be able to work with : https://github.com/noob-develops-pro/mern-todo-app.git
+- project is maily devided in two part : frontend and backend
+
+### Backend
 
 - both needs to be run seperatly
 - to run backend cd into backend and run npm install to install the node_modules
@@ -9,7 +12,7 @@
 - now its time to start the dev server : npm start is the command
 - backend will run on port 5000 and the link will be : http://localhost:5000/
 
-#### API endpoints
+### API endpoints
 
 - there are two endpoint : user and todos
 - i'm useing the standerd convension for api endpoints.
