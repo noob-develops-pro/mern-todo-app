@@ -1,16 +1,12 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-
-// import align from '../../imgages/ali-center.png'
-// import fileManager from '../../imgages/file-manger.png'
-// import edit from '../../imgages/edit.png'
-// import { showModal } from '../../features/counter/modalSlice'
-
+import React, { useContext } from 'react'
+import { useDispatch } from 'react-redux'
 import './header.css'
 import { useNavigate } from 'react-router-dom'
 import { showDashBoard } from '../../features/counter/userSlice'
+import { ApiContext } from '../../features/apiContext/apiContext'
 
 function Header() {
+  const { getData, setIsRefetch } = useContext(ApiContext)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -21,6 +17,8 @@ function Header() {
       <button
         className='btn btn-logout'
         onClick={() => {
+          setIsRefetch(true)
+          getData()
           navigate('/')
           localStorage.clear()
           dispatch(showDashBoard(false))

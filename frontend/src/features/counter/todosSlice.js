@@ -35,13 +35,14 @@ export const todosSlice = createSlice({
         editing: action.payload.editing,
       })
     },
+
     delTodo: (state, action) => {
-      state.todos = state.todos.filter((item) => item.id !== action.payload)
+      state.todos = state.todos.filter((item) => item._id !== action.payload)
       console.log('del todo triggerd')
     },
     searchTodo: (state, action) => {
       state.filterdTodos = state.todos.filter((todo) =>
-        todo.todo.includes(action.payload)
+        todo.title.includes(action.payload)
       )
     },
   },

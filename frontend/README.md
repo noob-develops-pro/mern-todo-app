@@ -1,13 +1,12 @@
 # Layout of my App
 
-app.js renders all the components and pages based on routing.
-notes data is being passed with contextApi
-Notes Component then maps over the notes(obj) and renders Note
-Note component then renders ViewNote based on view(btn) click
+- app.js renders all the components and pages based on routing.
+- notes data is being passed with contextApi
+- Notes Component then maps over the notes(obj) and renders Note
+- Note component then renders ViewNote based on view(btn) click
 
 components used are:
 app.js Nav.js welcome.js Notes.js Note.js viewNote.js Err.js context.js
-
 
 #BEST PRACTICE
 

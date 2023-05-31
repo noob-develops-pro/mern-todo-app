@@ -1,7 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { showModal } from '../../features/counter/modalSlice'
+import { ApiContext } from '../../features/apiContext/apiContext'
+
 import {
   addTodo,
   editIndex,
@@ -10,15 +12,19 @@ import {
 } from '../../features/counter/todosSlice'
 
 function NoteInput() {
+  const { createItem } = useContext(ApiContext)
   const editing = useSelector((s) => s.todos.editing)
   const data = useSelector((s) => s.todos.data)
   const todos = useSelector((s) => s.todos.todos)
-
+  // console.log(data, 'data')
   const [inpVal, setInpVal] = useState('')
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (editing) setInpVal(data.todo)
+    if (editing) {
+      console.log(data.title, 'title')
+      setInpVal(data.title)
+    }
   }, [editing])
 
   const addNote = async (e) => {
@@ -30,24 +36,19 @@ function NoteInput() {
     const time = `${hour}:${minutes}:${seconds}`
     const date = `${d.getDate()}`.padStart(2, 0)
     const id = new Date().getTime().toString()
-    const note = { id, todo: inpVal, time, date }
+    const note = { id, title: inpVal, time, date }
 
     if (editing) {
-      const index = todos.findIndex((todo) => data.id === todo.id)
+      console.log(data, 'dat')
+      const index = todos.findIndex((todo) => data.id === todo._id)
       console.log('index is ', index)
       dispatch(editIndex(index))
     }
 
     if (inpVal) {
-      try {
-        await axios.post('http://localhost:5000/api/v1/todos', {
-          title: inpVal,
-          description: 'xyz',
-        })
-      } catch (error) {
-        console.error(error)
-      }
+      console.log(note.title)
       dispatch(addTodo(note))
+      createItem(note.title)
     } else {
       alert('enter some value')
     }

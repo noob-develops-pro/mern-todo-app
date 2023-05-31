@@ -32,7 +32,7 @@ function Main() {
           }}
         />
         {user && <SearchInput />}
-        {/* {isModalOpen && !user && <Modal inpComp={<NameInput />} />} */}
+        {isModalOpen && !user && <Modal inpComp={<NameInput />} />}
         {isModalOpen && user && <Modal inpComp={<NoteInput />} />}
         {/* {<NoteInput />} */}
         <Notes />
