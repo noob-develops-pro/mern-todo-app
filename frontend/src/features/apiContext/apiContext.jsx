@@ -48,6 +48,7 @@ const AppProvider = ({ children }) => {
     }
   }
   const editItem = async (id, newValue) => {
+    console.log(id, newValue, 'in Edit')
     try {
       await axios.patch(`http://localhost:5000/api/v1/todos/${id}`, {
         title: newValue,

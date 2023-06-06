@@ -4,6 +4,8 @@ import dotenv from 'dotenv'
 import { connectDB } from './db/connect.js'
 import todosRouter from './routes/api/todos.js'
 import authRouter from './routes/api/auth.js'
+import notFound from './middleware/notFound.js'
+import errorHandler from './middleware/errorHandler.js'
 
 const app = express()
 app.use(express.json())
@@ -18,9 +20,11 @@ app.use('/api/v1/todos', todosRouter)
 app.use('/api/v1/auth', authRouter)
 
 //404 route
-app.all('*', (req, res) => {
-  res.status(404).send('404 not found --')
-})
+app.use(notFound)
+app.use(errorHandler)
+// app.all('*', (req, res) => {
+//   res.status(404).send('404 not found --')
+// })
 
 const PORT = process.env.PORT || 5000
 

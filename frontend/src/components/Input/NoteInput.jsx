@@ -4,15 +4,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { showModal } from '../../features/counter/modalSlice'
 import { ApiContext } from '../../features/apiContext/apiContext'
 
-import {
-  addTodo,
-  editIndex,
-  editTodo,
-  editTodoStatus,
-} from '../../features/counter/todosSlice'
+import { addTodo, editIndex, editTodo } from '../../features/counter/todosSlice'
 
 function NoteInput() {
-  const { createItem } = useContext(ApiContext)
+  const { createItem, editItem } = useContext(ApiContext)
   const editing = useSelector((s) => s.todos.editing)
   const data = useSelector((s) => s.todos.data)
   const todos = useSelector((s) => s.todos.todos)
@@ -43,6 +38,7 @@ function NoteInput() {
       const index = todos.findIndex((todo) => data.id === todo._id)
       console.log('index is ', index)
       dispatch(editIndex(index))
+      editItem(note.title)
     }
 
     if (inpVal) {

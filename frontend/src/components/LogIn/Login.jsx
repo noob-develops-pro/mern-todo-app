@@ -50,26 +50,9 @@ function Login() {
       setState(initialLogin)
     } catch (error) {
       alert(error.message)
+      navigate('/')
       console.error(error)
     }
-
-    // // console.log(regUser, 'regUser')
-    // if (regUser === null) {
-    //   alert('please sign Up first')
-    //   navigate('/register')
-    // }
-    // const { username, password } = regUser
-    // const { username: loginName, password: loginPass } = state
-
-    // if (username && password) {
-    //   if (username === loginName && password === loginPass) {
-    //     dispatch(showDashBoard(true))
-    //     navigate('/dashboard')
-    //     console.log('keys matched', username, loginName)
-    //   } else {
-    //     alert('details not matched')
-    //   }
-    // }
   }
 
   return (
